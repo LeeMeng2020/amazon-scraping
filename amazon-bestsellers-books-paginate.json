@@ -1,0 +1,79 @@
+{
+	"_id": "amazon-bestsellers-books-paginate",
+	"startUrl": ["https://www.amazon.co.uk/gp/bestsellers/books/", "https://www.amazon.ca/Best-Sellers-Books/zgbs/books", "https://www.amazon.com/best-sellers-books-Amazon/zgbs/books/"],
+	"selectors": [{
+		"id": "Scroller",
+		"parentSelectors": ["_root", "Next page"],
+		"type": "SelectorElementScroll",
+		"selector": "div#gridItemRoot:nth-of-type(n+6):even",
+		"multiple": true,
+		"delay": 2000,
+		"elementLimit": 50
+	}, {
+		"id": "Item wrappers",
+		"parentSelectors": ["_root", "Next page"],
+		"type": "SelectorElement",
+		"selector": "div[class*=\"desktop-grid\"] div#gridItemRoot",
+		"multiple": true
+	}, {
+		"id": "Next page",
+		"parentSelectors": ["_root"],
+		"type": "SelectorElementClick",
+		"clickElementSelector": "ul.a-pagination li.a-last a",
+		"clickElementUniquenessType": "uniqueHTML",
+		"clickType": "clickMore",
+		"delay": 4500,
+		"discardInitialElements": "discard",
+		"multiple": false,
+		"selector": "div > div.a-col-right"
+	}, {
+		"id": "Position",
+		"parentSelectors": ["Item wrappers"],
+		"type": "SelectorText",
+		"selector": "span.zg-bdg-text",
+		"multiple": false,
+		"regex": "(?<=#)\\d+"
+	}, {
+		"id": "Title and Link",
+		"parentSelectors": ["Item wrappers"],
+		"type": "SelectorLink",
+		"selector": "div > a:nth-of-type(2)",
+		"multiple": false,
+		"linkType": "linkFromHref"
+	}, {
+		"id": "Author",
+		"parentSelectors": ["Item wrappers"],
+		"type": "SelectorText",
+		"selector": "div.a-row a.a-size-small div",
+		"multiple": false,
+		"regex": ""
+	}, {
+		"id": "Rating",
+		"parentSelectors": ["Item wrappers"],
+		"type": "SelectorElementAttribute",
+		"selector": "div.a-row > div > a[title*='5 stars']",
+		"multiple": false,
+		"extractAttribute": "title"
+	}, {
+		"id": "Binding",
+		"parentSelectors": ["Item wrappers"],
+		"type": "SelectorText",
+		"selector": "div[class*='sc'] > div:nth-of-type(3) > span,div[class*='sc'] > div:nth-of-type(2):contains('ardcover') > span,div[class*='sc'] > div:nth-of-type(2):contains('aperback') > span",
+		"multiple": false,
+		"regex": ""
+	}, {
+		"id": "Price",
+		"parentSelectors": ["Item wrappers"],
+		"type": "SelectorText",
+		"selector": "div.a-row div div span[class*='price'],div.a-row:contains('offers from') a > span",
+		"multiple": false,
+		"regex": ""
+	}, {
+		"id": "Author2",
+		"parentSelectors": ["Item wrappers"],
+		"type": "SelectorText",
+		"selector": "div[class*='sc'] > div:nth-child(3) > span > div",
+		"multiple": false,
+		"regex": ""
+	}]
+}
