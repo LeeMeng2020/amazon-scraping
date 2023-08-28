@@ -1,0 +1,73 @@
+{
+	"_id": "amazon-reviews-scraper-2023",
+	"startUrl": ["https://www.amazon.com/kindle-the-lightest-and-most-compact-kindle/product-reviews/B0B92489PD/", "https://www.amazon.com/Crocs-Unisex-Classic-Black-Women/product-reviews/B0014C2NBC/", "https://www.amazon.com/Rain-X-Latitude-Water-Repellency-Wiper/product-reviews/B084CT24NM/"],
+	"selectors": [{
+		"id": "Product name",
+		"parentSelectors": ["Page selector"],
+		"type": "SelectorText",
+		"selector": "div[class*='product-title']",
+		"multiple": false,
+		"regex": ""
+	}, {
+		"id": "Review wrappers",
+		"parentSelectors": ["Page selector"],
+		"type": "SelectorElement",
+		"selector": "div.a-section.review",
+		"multiple": true
+	}, {
+		"id": "author",
+		"parentSelectors": ["Review wrappers"],
+		"type": "SelectorText",
+		"selector": "span.a-profile-name",
+		"multiple": false,
+		"regex": ""
+	}, {
+		"id": "title",
+		"parentSelectors": ["Review wrappers"],
+		"type": "SelectorText",
+		"selector": "a.a-size-base.review-title > span:last-of-type",
+		"multiple": false,
+		"regex": ""
+	}, {
+		"id": "date",
+		"parentSelectors": ["Review wrappers"],
+		"type": "SelectorText",
+		"selector": "span.a-size-base.a-color-secondary",
+		"multiple": false,
+		"regex": ""
+	}, {
+		"id": "content",
+		"parentSelectors": ["Review wrappers"],
+		"type": "SelectorText",
+		"selector": "div.a-row.review-data span.a-size-base",
+		"multiple": false,
+		"regex": ""
+	}, {
+		"id": "rating",
+		"parentSelectors": ["Review wrappers"],
+		"type": "SelectorText",
+		"selector": "span.a-icon-alt",
+		"multiple": false,
+		"regex": ""
+	}, {
+		"id": "Page selector",
+		"parentSelectors": ["_root", "Next Page"],
+		"type": "SelectorElement",
+		"selector": "body",
+		"multiple": false
+	}, {
+		"id": "Page no next",
+		"parentSelectors": ["Page selector"],
+		"type": "SelectorHTML",
+		"selector": "_parent_",
+		"multiple": false,
+		"regex": "(?<=next\".+pageNumber=)\\d+"
+	}, {
+		"id": "Next Page",
+		"parentSelectors": ["_root", "Next Page"],
+		"type": "SelectorLink",
+		"selector": "div > ul.a-pagination li.a-last:not([a-disabled]) a:not([href*='paging_btm_4'])",
+		"multiple": false,
+		"linkType": "linkFromHref"
+	}]
+}
