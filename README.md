@@ -17,3 +17,4 @@ Scrapes Amazon book bestsellers.
 
 Scrapes reviews for specific products on Amazon.
 - Handles pagination. Set to stop at page 3. This can be changed.
+- Sample result file: amazon-reviews-scraper.csv
