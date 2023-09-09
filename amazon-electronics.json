@@ -1,0 +1,149 @@
+{
+	"_id": "amazon-electronics-2023",
+	"startUrl": ["https://www.amazon.com/s?rh=n%3A16225009011&fs=true&ref=lp_16225009011_sar"],
+	"selectors": [{
+		"id": "Result elements",
+		"parentSelectors": ["_root", "Paginator"],
+		"type": "SelectorElement",
+		"selector": "div.sg-col-4-of-24.s-result-item",
+		"multiple": true
+	}, {
+		"id": "Title and Link",
+		"parentSelectors": ["Result elements"],
+		"type": "SelectorLink",
+		"selector": "h2 a",
+		"multiple": false,
+		"linkType": "linkFromHref"
+	}, {
+		"id": "Price",
+		"parentSelectors": ["Title and Link"],
+		"type": "SelectorText",
+		"selector": "[id^='corePriceDisplay'] div span.a-price:not([data-a-strike]) span.a-offscreen,tbody> tr#comparison_price_row td.comparison_baseitem_column",
+		"multiple": false,
+		"regex": ""
+	}, {
+		"id": "Strike price",
+		"parentSelectors": ["Title and Link"],
+		"type": "SelectorHTML",
+		"selector": "div div[id^='corePriceDisplay'] span span[data-a-strike='true'] span.a-offscreen",
+		"multiple": false,
+		"regex": ""
+	}, {
+		"id": "Rating",
+		"parentSelectors": ["Result elements"],
+		"type": "SelectorElementAttribute",
+		"selector": "div > span[aria-label$='stars']",
+		"multiple": false,
+		"extractAttribute": "aria-label"
+	}, {
+		"id": "Badge",
+		"parentSelectors": ["Result elements"],
+		"type": "SelectorText",
+		"selector": "div div.a-badge-region span > span",
+		"multiple": false,
+		"regex": ""
+	}, {
+		"id": "Page no",
+		"parentSelectors": ["_root", "Paginator"],
+		"type": "SelectorText",
+		"selector": "span.s-pagination-strip .s-pagination-selected",
+		"multiple": false,
+		"regex": ""
+	}, {
+		"id": "Paginator",
+		"parentSelectors": ["_root", "Paginator"],
+		"type": "SelectorElementClick",
+		"clickActionType": "real",
+		"clickElementSelector": "div[role='navigation'] a.s-pagination-next:not([aria-label$='page 5'])",
+		"clickElementUniquenessType": "uniqueHTML",
+		"clickType": "clickMore",
+		"delay": 5250,
+		"discardInitialElements": "discard-when-click-element-exists",
+		"multiple": false,
+		"selector": "div.s-desktop-content"
+	}, {
+		"id": "Discount",
+		"parentSelectors": ["Title and Link"],
+		"type": "SelectorText",
+		"selector": "div.a-section > span.savingsPercentage ",
+		"multiple": false,
+		"regex": ""
+	}, {
+		"id": "Ratings count",
+		"parentSelectors": ["Title and Link"],
+		"type": "SelectorText",
+		"selector": "span > a[id*='CustomerReviewLink']",
+		"multiple": false,
+		"regex": ""
+	}, {
+		"id": "ASIN",
+		"parentSelectors": ["Title and Link"],
+		"type": "SelectorText",
+		"selector": "tbody tr:contains('ASIN') td,li > span.a-list-item:contains('ASIN') > span:last-of-type",
+		"multiple": false,
+		"regex": ""
+	}, {
+		"id": "Brand",
+		"parentSelectors": ["Title and Link"],
+		"type": "SelectorText",
+		"selector": "tbody tr.po-brand > td:last-of-type,div#centerCol a#bylineInfo:contains('Brand')",
+		"multiple": false,
+		"regex": ""
+	}, {
+		"id": "Model or series",
+		"parentSelectors": ["Title and Link"],
+		"type": "SelectorText",
+		"selector": "tbody tr.po-model_name > td:last-of-type,tbody > tr:contains('model number') td,tbody > tr:contains('Series') td",
+		"multiple": false,
+		"regex": ""
+	}, {
+		"id": "Sold by",
+		"parentSelectors": ["Title and Link"],
+		"type": "SelectorText",
+		"selector": "[tabular-attribute-name='Sold by'] div.tabular-buybox-text",
+		"multiple": false,
+		"regex": ""
+	}, {
+		"id": "Country of Origin",
+		"parentSelectors": ["Title and Link"],
+		"type": "SelectorText",
+		"selector": "tbody tr:contains('Country of Origin') td,li > span.a-list-item:contains('Country of Origin') > span:last-of-type",
+		"multiple": false,
+		"regex": ""
+	}, {
+		"id": "Manufacturer",
+		"parentSelectors": ["Title and Link"],
+		"type": "SelectorText",
+		"selector": "tbody tr:contains('Manufacturer'):not(:contains('Discontinued')) td, div[id^='detail'] > ul > li:nth-of-type(n+3):contains('Manufacturer') span > span:last-of-type",
+		"multiple": false,
+		"regex": ""
+	}, {
+		"id": "Store name and link",
+		"parentSelectors": ["Title and Link"],
+		"type": "SelectorLink",
+		"selector": "div.a-section a[href^='/stores']",
+		"multiple": false,
+		"linkType": "linkFromHref"
+	}, {
+		"id": "Availability",
+		"parentSelectors": ["Title and Link"],
+		"type": "SelectorText",
+		"selector": "div.a-section > div#availability",
+		"multiple": false,
+		"regex": ""
+	}, {
+		"id": "ASIN2",
+		"parentSelectors": ["Title and Link"],
+		"type": "SelectorHTML",
+		"selector": "body",
+		"multiple": false,
+		"regex": "(?<=current[Aa]sin[\\W]{3,5})[\\w]+"
+	}, {
+		"id": "Item weight",
+		"parentSelectors": ["Title and Link"],
+		"type": "SelectorText",
+		"selector": "tr:contains('Item Weight') td.a-size-base",
+		"multiple": false,
+		"regex": ""
+	}]
+}
